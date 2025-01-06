@@ -35,7 +35,13 @@ function UserForm() {
   };
 
   const validateForm = () => {
-    if (!formData.firstname || !formData.lastname || !formData.gender || !formData.dob || !formData.address) {
+    if (
+      !formData.firstname ||
+      !formData.lastname ||
+      !formData.gender ||
+      !formData.dob ||
+      !formData.address
+    ) {
       return "All fields are required!";
     }
     return "";
@@ -51,7 +57,10 @@ function UserForm() {
 
     setIsLoading(true);
     try {
-      const response = await axios.post("http://localhost:3001/api/tblstudent", formData);
+      const response = await axios.post(
+        "http://localhost:3001/api/tblstudent",
+        formData
+      );
       setMessage(response.data.message);
       setFormData({
         firstname: "",
@@ -62,7 +71,11 @@ function UserForm() {
       });
     } catch (error) {
       console.error("Error submitting form:", error);
-      setMessage(`Failed to add user: ${error.response ? error.response.data.message : error.message}`);
+      setMessage(
+        `Failed to add user: ${
+          error.response ? error.response.data.message : error.message
+        }`
+      );
     } finally {
       setIsLoading(false);
     }
@@ -70,11 +83,15 @@ function UserForm() {
 
   return (
     <div className="block">
-      <h1 className="text-black p-[30px] font-bold text-[20px] text-center">Insert Data</h1>
+      <h1 className="text-black p-[30px] font-bold text-[20px] text-center">
+        Insert Data
+      </h1>
       <div className="flex justify-center">
         <div className="flex justify-center bg-white w-[500px] rounded-[20px] p-[20px] shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]">
           <form className="flex flex-col pb-[20px]" onSubmit={handleSubmit}>
-            <label htmlFor="firstname" className="pb-[10px]">Firstname</label>
+            <label htmlFor="firstname" className="pb-[10px]">
+              Firstname
+            </label>
             <input
               type="text"
               name="firstname"
@@ -82,7 +99,9 @@ function UserForm() {
               onChange={handleChange}
               value={formData.firstname}
             />
-            <label htmlFor="lastname" className="pb-[10px]">Lastname</label>
+            <label htmlFor="lastname" className="pb-[10px]">
+              Lastname
+            </label>
             <input
               type="text"
               name="lastname"
@@ -115,23 +134,26 @@ function UserForm() {
                 <span className="text-gray-700">Female</span>
               </label>
             </div>
-            <label htmlFor="dob" className="pb-[10px]">Date of Birth</label>
+            <label htmlFor="dob" className="pb-[10px]">
+              Date of Birth
+            </label>
             <input
               type="date"
               name="dob"
               onChange={handleChange}
               value={formData.dob}
             />
-            <label htmlFor="address" className="pb-[10px]">Address (Province)</label>
+            <label htmlFor="address" className="pb-[10px]">
+              Address (Province)
+            </label>
             <select
               name="address"
               onChange={handleChange}
               value={formData.address}
-              className="border-gray-300 p-2 rounded-md"
-            >
+              className="border-gray-300 p-2 rounded-md">
               <option value="">Select Province...</option>
               {provinces.map((province) => (
-                <option key={province.ID} value={province.ID}>
+                <option key={province.ID} value={province.Name}>
                   {province.Name}
                 </option>
               ))}
@@ -140,15 +162,20 @@ function UserForm() {
               <button
                 type="submit"
                 className="bg-blue-600 rounded-[10px] w-[100px] h-[30px] shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] border-none"
-                disabled={isLoading}
-              >
-                {isLoading ? "Submitting..." : <span className="font-bold text-white">Submit</span>}
+                disabled={isLoading}>
+                {isLoading ? (
+                  "Submitting..."
+                ) : (
+                  <span className="font-bold text-white">Submit</span>
+                )}
               </button>
             </div>
           </form>
         </div>
       </div>
-      {message && <div className="text-center mt-4 text-green-600">{message}</div>}
+      {message && (
+        <div className="text-center mt-4 text-green-600">{message}</div>
+      )}
     </div>
   );
 }
