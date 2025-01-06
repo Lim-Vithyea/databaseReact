@@ -1,17 +1,17 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import './App.css';
-import Display from './components/Display';
 import UserForm from './components/UserForm';
+import StudentList from './components/StudentList';
 
 function App() {
-  const [reload, setReload] = useState(false);
-  const handleUserAdded = () => {
-    setReload(!reload);
-  };
+  // const [reload, setReload] = useState(false);
+  // const handleUserAdded = () => {
+  //   setReload(!reload);
+  // };
   return (
     <div className="App">
      <UserForm/>
-     {/* <Display key="reload"/> */}
+     <StudentList/>
     </div>
   );
 }

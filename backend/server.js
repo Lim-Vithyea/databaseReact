@@ -44,23 +44,19 @@ app.post('/api/tblstudent', (req, res) => {
 });
 
 //display
-// app.get('/api/users', (req, res) => {
-//     const query = 'SELECT * FROM users';
-//     db.query(query, (err, results) => {
-//       if (err) {
-//         console.error('Database query error:', err.message);
-//         return res.status(500).json({ message: 'Database error', error: err.message });
-//       }
-//       res.status(200).json(results);
-//     });
-//   });
+app.get('/api/tblstudent', (req, res) => {
+  console.log('Received a GET request to /api/tblstudent');
+  const query = 'SELECT * FROM tblstudent';
+  db.query(query, (error, results) => {
+    if (error) {
+      console.error('Database query error:', error.message);
+      return res.status(500).json({ message: 'Database error', error: error.message });
+    }
+    console.log('Query results:', results);
+    res.status(200).json(results);
+  });
+});
 
-// app.get('/api/users', (req, res) => {
-//     connection.query('SELECT * FROM users', (error, results, fields) => {
-//       if (error) throw error;
-//       res.send(JSON.stringify(results));
-//     });
-//   });
 
 const PORT = 3001;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

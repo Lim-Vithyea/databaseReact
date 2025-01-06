@@ -10,3 +10,12 @@ input {
     border-radius: 10px;
     width: 300px;
 }
+table th{
+    border: 2px solid blue;
+    padding: 0px 10px 0px 10px;
+}
+td{
+    text-align: center;
+    border: 2px solid blue;
+    padding: 10px;
+}
