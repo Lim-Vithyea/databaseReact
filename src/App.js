@@ -2,7 +2,6 @@
 import './App.css';
 import UserForm from './components/UserForm';
 import StudentList from './components/StudentList';
-
 function App() {
   // const [reload, setReload] = useState(false);
   // const handleUserAdded = () => {
