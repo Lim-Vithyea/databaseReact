@@ -2,7 +2,7 @@
 import './App.css';
 import UserForm from './components/UserForm';
 import StudentList from './components/StudentList';
-
+import Chart from './components/Chart';
 function App() {
   // const [reload, setReload] = useState(false);
   // const handleUserAdded = () => {
@@ -12,6 +12,7 @@ function App() {
     <div className="App">
      <UserForm/>
      <StudentList/>
+     <Chart/>
     </div>
   );
 }
