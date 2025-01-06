@@ -1,34 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../components/compo.css";
 
 function UserForm() {
   const [formData, setFormData] = useState({
-    //formdata is the current status of the data in the inputfield
-    //setformdata is the updated data from inputfield
     firstname: "",
     lastname: "",
     gender: "",
     dob: "",
-    address: "",
+    address: "", // this will hold the selected province
   });
 
+  const [provinces, setProvinces] = useState([]); // to hold the list of provinces
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Fetch provinces when the component mounts
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/api/provinces");
+        setProvinces(response.data); // assuming the API returns an array of provinces
+      } catch (error) {
+        console.error("Error fetching provinces:", error);
+      }
+    };
+
+    fetchProvinces();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });//grab data when the data changed in the inputfield
+    setFormData({ ...formData, [name]: value });
   };
-  //Connect to database
+
+  const validateForm = () => {
+    if (!formData.firstname || !formData.lastname || !formData.gender || !formData.dob || !formData.address) {
+      return "All fields are required!";
+    }
+    return "";
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationMessage = validateForm();
+    if (validationMessage) {
+      setMessage(validationMessage);
+      return;
+    }
+
+    setIsLoading(true);
     try {
       const response = await axios.post("http://localhost:3001/api/tblstudent", formData);
       setMessage(response.data.message);
-      setFormData({firstname: "",lastname: "",gender: "",dob: "",address: "",
+      setFormData({
+        firstname: "",
+        lastname: "",
+        gender: "",
+        dob: "",
+        address: "",
       });
     } catch (error) {
       console.error("Error submitting form:", error);
       setMessage(`Failed to add user: ${error.response ? error.response.data.message : error.message}`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -86,20 +122,27 @@ function UserForm() {
               onChange={handleChange}
               value={formData.dob}
             />
-            <label htmlFor="address" className="pb-[10px]">Address</label>
-            <input
-              type="text"
+            <label htmlFor="address" className="pb-[10px]">Address (Province)</label>
+            <select
               name="address"
-              placeholder="Enter the address"
               onChange={handleChange}
               value={formData.address}
-            />
+              className="border-gray-300 p-2 rounded-md"
+            >
+              <option value="">Select Province...</option>
+              {provinces.map((province) => (
+                <option key={province.ID} value={province.ID}>
+                  {province.Name}
+                </option>
+              ))}
+            </select>
             <div className="p-[30px] text-center">
               <button
                 type="submit"
                 className="bg-blue-600 rounded-[10px] w-[100px] h-[30px] shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] border-none"
+                disabled={isLoading}
               >
-                <span className="font-bold text-white">Submit</span>
+                {isLoading ? "Submitting..." : <span className="font-bold text-white">Submit</span>}
               </button>
             </div>
           </form>
