@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -57,6 +58,17 @@ app.get('/api/tblstudent', (req, res) => {
   });
 });
 
+// Fetch data for chart
+app.get('/api/chart-data', (req, res) => {
+  const query = 'SELECT * FROM  tblstudent'; // Example table name, adjust as necessary
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Database query error:', err);
+      return res.status(500).json({ message: 'Database error', error: err.message });
+    }
+    res.json(results); // Return the query result as JSON
+  });
+});
 
 const PORT = 3001;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
