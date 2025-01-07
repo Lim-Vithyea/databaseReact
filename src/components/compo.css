@@ -2,20 +2,41 @@ label{
     font-weight: bold;
     font-size: 15px;
     padding: 10px 10px 10px 0px;
-    color: blue;
+    color: #3b82f6;
 }
 input {
     padding: 10px;
     border: 1px solid rgb(150, 150, 150);
-    border-radius: 10px;
+    border-radius: 5px;
     width: 300px;
+    padding-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
 table th{
-    border: 2px solid blue;
-    padding: 0px 10px 0px 10px;
+    color: white;
+    border: 1px solid black;
+    /* padding: 0px 10px 0px 10px; */
+    padding: 15px;
+    background-color: #111827;
 }
 td{
     text-align: center;
-    border: 2px solid blue;
-    padding: 10px;
+    border: 1px solid black;
+    padding: 15px;
+    color: #3b82f6;
+    font-weight: bold;
+    
 }
+table tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* Light blue for odd rows */
+  }
+  
+table tbody tr:nth-child(even) {
+    background-color: #bdf5ff; /* Light gray for even rows */
+  }
+  
+  /* Hover effect for rows */
+table tbody tr:hover {
+    background-color: #d1d5db; /* Slightly darker gray on hover */
+  }

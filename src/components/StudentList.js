@@ -4,7 +4,6 @@ import "../components/compo.css";
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
-
   useEffect(() => {
     axios.get('http://localhost:3001/api/tblstudent')
       .then(response => {
@@ -15,9 +14,10 @@ const StudentList = () => {
   }, []);
   return (
     <div className=''>
-        <h1 className='text-center p-5 font-bold text-2xl text-blue-500'>StudentList</h1>
+
+     <h1 className='text-center p-5 font-bold text-2xl text-blue-500'>StudentList</h1>
         <div className='flex justify-center'>
-      <table className='w-[80%] text-sm text-left rtl:text-right text-black mb-5'>
+      <table className='w-[90%] text-sm text-left rtl:text-right text-black mb-5'>
         <thead className='text-xs text-blue-500 uppercase bg-gray-50'>
           <tr className='text-center'>
             <th>ID</th>
