@@ -16,7 +16,6 @@ input {
 table th{
     color: white;
     border: 1px solid black;
-    /* padding: 0px 10px 0px 10px; */
     padding: 15px;
     background-color: #111827;
 }
@@ -29,14 +28,12 @@ td{
     
 }
 table tbody tr:nth-child(odd) {
-    background-color: #ffffff; /* Light blue for odd rows */
+    background-color: #ffffff; 
   }
   
 table tbody tr:nth-child(even) {
-    background-color: #bdf5ff; /* Light gray for even rows */
+    background-color: #eceeee; 
   }
-  
-  /* Hover effect for rows */
 table tbody tr:hover {
-    background-color: #d1d5db; /* Slightly darker gray on hover */
+    background-color: #d1d5db;
   }

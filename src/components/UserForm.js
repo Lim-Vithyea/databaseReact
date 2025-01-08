@@ -12,6 +12,7 @@ function UserForm() {
     dob: "",
     address: "Phnom Penh",
   });
+  
   const [message, setMessage] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +31,6 @@ function UserForm() {
       setMessage(`Failed to add user: ${error.response ? error.response.data.message : error.message}`);
     }
   };
-
   return (
     <div >
       <h1 className="text-center font-bold text-2xl p-[30px] text-blue-500">Insert Student Data</h1>

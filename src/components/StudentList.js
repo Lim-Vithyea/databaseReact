@@ -14,7 +14,6 @@ const StudentList = () => {
   }, []);
   return (
     <div className=''>
-
      <h1 className='text-center p-5 font-bold text-2xl text-blue-500'>StudentList</h1>
         <div className='flex justify-center'>
       <table className='w-[90%] text-sm text-left rtl:text-right text-black mb-5'>
