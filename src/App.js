@@ -11,9 +11,9 @@ import { Navigate } from 'react-router-dom';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-  };
+  // const handleLogin = () => {
+  //   setIsAuthenticated(true);
+  // };
   const handleLogout = () => {
     setIsAuthenticated(false);
   };

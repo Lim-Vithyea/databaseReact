@@ -4,42 +4,46 @@ import "../components/compo.css";
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
+
   useEffect(() => {
-    axios.get('http://localhost:3001/api/tblstudent')
+    axios
+      .get('http://localhost:3001/api/tblstudent')
       .then(response => {
-        setStudents(response.data);})
+        setStudents(response.data);
+      })
       .catch(error => {
         console.error('There was an error fetching the data!', error);
       });
   }, []);
+
   return (
-    <div className=''>
-     <h1 className='text-center p-5 font-bold text-2xl text-blue-500'>StudentList</h1>
-        <div className='flex justify-center'>
-      <table className='w-[90%] text-sm text-left rtl:text-right text-black mb-5'>
-        <thead className='text-xs text-blue-500 uppercase bg-gray-50'>
-          <tr className='text-center'>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
-            <th>Date of Birth</th>
-            <th>Address</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map(student => (
-            <tr key={student.id}>
-              <td>{student.id}</td>
-              <td>{student.firstname}</td>
-              <td>{student.lastname}</td>
-              <td>{student.gender}</td>
-              <td>{student.dob}</td>
-              <td>{student.address}</td>
+    <div className="p-5">
+      <h1 className="text-center font-bold text-2xl text-blue-500 p-5">Student List</h1>
+      <div className="flex justify-center">
+        <table className="w-[80%] text-sm text-gray-700 border-collapse bg-white rounded-lg shadow-md">
+          <thead className="bg-gray-100 text-gray-600 uppercase text-xs">
+            <tr className="text-center">
+              <th className="py-3 px-4 border-b">ID</th>
+              <th className="py-3 px-4 border-b">First Name</th>
+              <th className="py-3 px-4 border-b">Last Name</th>
+              <th className="py-3 px-4 border-b">Gender</th>
+              <th className="py-3 px-4 border-b">Date of Birth</th>
+              <th className="py-3 px-4 border-b">Address</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {students.map(student => (
+              <tr key={student.id} className="text-center border-b hover:bg-gray-50">
+                <td className="py-3 px-4">{student.id}</td>
+                <td className="py-3 px-4">{student.firstname}</td>
+                <td className="py-3 px-4">{student.lastname}</td>
+                <td className="py-3 px-4">{student.gender}</td>
+                <td className="py-3 px-4">{student.dob}</td>
+                <td className="py-3 px-4">{student.address}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

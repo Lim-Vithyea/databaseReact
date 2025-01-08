@@ -13,27 +13,38 @@ input {
     display: flex;
     flex-wrap: wrap;
 }
-table th{
-    color: white;
-    border: 1px solid black;
-    padding: 15px;
-    background-color: #111827;
-}
-td{
-    text-align: center;
-    border: 1px solid black;
-    padding: 15px;
-    color: #3b82f6;
-    font-weight: bold;
-    
-}
-table tbody tr:nth-child(odd) {
-    background-color: #ffffff; 
+table {
+    border-spacing: 0;
+    width: 100%;
   }
   
-table tbody tr:nth-child(even) {
-    background-color: #eceeee; 
+  th,
+  td {
+    padding: 12px;
+    text-align: center;
   }
-table tbody tr:hover {
-    background-color: #d1d5db;
+  
+  th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+    color: #4b5563;
   }
+  
+  tr:nth-child(even) {
+    background-color: #f9fafb;
+  }
+  
+  tr:hover {
+    background-color: #f1f5f9;
+  }
+  
+  td {
+    color: #374151;
+  }
+  
+  table {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
