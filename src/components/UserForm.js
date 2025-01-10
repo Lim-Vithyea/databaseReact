@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../components/compo.css";
 
-function UserForm() {
-  const [formData, setFormData] = useState({
-    //formdata is the current status of the data in the inputfield
-    //setformdata is the updated data from inputfield
+function UserhtmlForm() {
+  const [htmlFormData, sethtmlFormData] = useState({
+    //htmlFormdata is the current status of the data in the inputfield
+    //sethtmlFormdata is the updated data from inputfield
     firstname: "",
     lastname: "",
     gender: "male",
@@ -16,51 +16,52 @@ function UserForm() {
   const [message, setMessage] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });//grab data when the data changed in the inputfield
+    sethtmlFormData({ ...htmlFormData, [name]: value });//grab data when the data changed in the inputfield
   };
   //Connect to database
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/api/tblstudent", formData);
+      const response = await axios.post("http://localhost:3001/api/tblstudent", htmlFormData);
       setMessage(response.data.message);
-      setFormData({firstname: "",lastname: "",gender: "",dob: "",address: "",
+      sethtmlFormData({firstname: "",lastname: "",gender: "",dob: "",address: "",
       });
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Error submitting htmlForm:", error);
       setMessage(`Failed to add user: ${error.response ? error.response.data.message : error.message}`);
     }
   };
   return (
-    <div >
+    <div className="flex flex-col flex-shrink h-screen">
+      <h1 className="text-2xl font-bold text-blue-500 p-2'">Add Data</h1>
       <h1 className="text-center font-bold text-2xl p-[30px] text-blue-500">Insert Student Data</h1>
-      <div className="flex justify-center flex-wrap">
+      <div className="flex justify-center flex-shrink">
      <form method="post" onSubmit={handleSubmit} >
      <div className="flex gap-10">
       <div className="flex justify-start flex-col">
-        <label for="firstname">Firstname</label>
-        <input name="firstname" type="text" placeholder="Enter the Firstname" required onChange={handleChange} value={formData.firstname}/>
+        <label htmlFor="firstname">Firstname</label>
+        <input name="firstname" type="text" placeholder="Enter the Firstname" required onChange={handleChange} value={htmlFormData.firstname}/>
       </div>
       <div className="flex justify-start flex-col">
-            <label for="lastname">Lastname</label>
-            <input name="lastname" type="text" placeholder="Enter the Lastname"  required onChange={handleChange} value={formData.lastname}/>
+            <label htmlFor="lastname">Lastname</label>
+            <input name="lastname" type="text" placeholder="Enter the Lastname"  required onChange={handleChange} value={htmlFormData.lastname}/>
       </div>
       </div>
       <div className="flex flex-col">
         <label htmlFor="gender" className="text-gray-700 font-medium">Select Gender</label>
         <select id="gender" name="gender"
-        onChange={handleChange} value={formData.gender}
+        onChange={handleChange} value={htmlFormData.gender}
         className="w-[100%] px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
       </div>
       <div className="flex flex-col ">
-      <label for="dob">Date of Birth</label>
-      <input type="date" name="dob" onChange={handleChange} value={formData.dob} className="w-[100%]"/>
+      <label htmlFor="dob">Date of Birth</label>
+      <input type="date" name="dob" onChange={handleChange} value={htmlFormData.dob} className="w-[100%]"/>
       <label>Provices/City</label>
       <select id="address" name="address"
-      onChange={handleChange} value={formData.address}
+      onChange={handleChange} value={htmlFormData.address}
       className="w-[100%] px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
           <option value="Banteay Meanchey">Banteay Meanchey</option>
           <option value="Battambang">Battambang</option>
@@ -101,4 +102,4 @@ function UserForm() {
   );
 }
 
-export default UserForm;
+export default UserhtmlForm;

@@ -20,7 +20,7 @@ const StudentList = () => {
     <div className="p-5">
       <h1 className="text-center font-bold text-2xl text-blue-500 p-5">Student List</h1>
       <div className="flex justify-center">
-        <table className="w-[80%] text-sm text-gray-700 border-collapse bg-white rounded-lg shadow-md">
+        <table className="w-[90%] text-sm text-gray-700 border-collapse bg-white rounded-lg shadow-md">
           <thead className="bg-gray-100 text-gray-600 uppercase text-xs">
             <tr className="text-center">
               <th className="py-3 px-4 border-b">ID</th>

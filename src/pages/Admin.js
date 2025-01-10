@@ -3,16 +3,16 @@ import { useNavigate } from 'react-router-dom'
 import { useState,useEffect } from 'react';
 import axios from "axios";
 
-function Login() {
+function Admin() {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
+  const [admin, setAdmin] = useState('');
+  const [adminPassword, setadminPassword] = useState('');
   const [databaseData, setDatabaseData] = useState([]);
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/api/roleuser')
+      .get('http://localhost:3001/api/adminrole')
       .then(response => {
         setDatabaseData(response.data);
       })
@@ -21,11 +21,11 @@ function Login() {
       });
   }, []);
   const handleLogin = (e) => {
-    console.log('User:', user);
-    console.log('Password:', password);
-    const foundUser = databaseData.find((dbUser) => dbUser.username === user && dbUser.password === password );
+    console.log('User:', admin);
+    console.log('Password:', adminPassword);
+    const foundAdmin = databaseData.find((dbUser) => dbUser.adminusername === admin && dbUser.adminpassword === adminPassword );
     //login logic
-    if (foundUser) {
+    if (foundAdmin) {
       navigate('/dashboard');
       console.log('Login successful!');
     } else {
@@ -37,15 +37,15 @@ function Login() {
   return (
     <div className='flex justify-center p-[150px]'>
       <div className='flex flex-col w-[400px] h-[400px] shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] border-none rounded-xl'>
-        <h1 className='text-center p-5 font-bold text-xl text-blue-500'>Login</h1>
+        <h1 className='text-center p-5 font-bold text-xl text-blue-500'>Login as Admin</h1>
         <div className='flex justify-center pt-[20px]'>
         <form className='flex-col' >
             <div className='p-2'>
             <label for="username">Username</label>
             <input 
             name='username' 
-            value={user}
-            onChange={(e)=>setUser(e.target.value)} 
+            value={admin}
+            onChange={(e)=>setAdmin(e.target.value)} 
             type='text' 
             placeholder='Enter your username'/>
             </div>
@@ -53,8 +53,8 @@ function Login() {
             <label for="password">Password</label>
             <input 
             name='password' 
-            value={password}
-            onChange={(e)=>setPassword(e.target.value)} 
+            value={adminPassword}
+            onChange={(e)=>setadminPassword(e.target.value)} 
             placeholder='Enter your password' 
             type="password"/>
             </div>
@@ -69,4 +69,4 @@ function Login() {
     </div>
   )
 }
-export default Login
+export default Admin;

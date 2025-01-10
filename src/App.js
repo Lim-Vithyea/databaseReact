@@ -8,12 +8,18 @@ import Setting from './components/Setting';
 import Login from './components/Login';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import Admin from './pages/Admin';
+import Alert from './components/Alert';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [adminLogin, setAdminLogin] = useState(true)
   // const handleLogin = () => {
   //   setIsAuthenticated(true);
   // };
+  const handleadminLogin = ()=>{
+    setAdminLogin(true);
+  }
   const handleLogout = () => {
     setIsAuthenticated(false);
   };
@@ -28,8 +34,9 @@ function App() {
         <Routes>
           <Route path="/dashboard" element={
             <div className=''>
+              <Alert/>
               <div className='bg-white'>
-                <h1 className='text-3xl font-bold text-blue-500 pl-5 '>Dashboard</h1>
+                <h1 className='text-2xl font-bold text-blue-500 p-2'>Dashboard</h1>
               </div>
               <div className='pl-10 pr-10 pb-10'>
                 <Chart />
@@ -42,10 +49,10 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
-    </div> ): ( 
+    </div> ) : ( 
       <Routes>
-          <Route path="/login" element={<Login/>} />
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="/admin" element={<Admin/>} />
+          <Route path="*" element={<Navigate to="/admin" />} />
         </Routes>)} 
     </Router>
     
